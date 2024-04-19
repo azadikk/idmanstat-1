@@ -35,7 +35,7 @@ const App = () => {
 
   return (
     <React.Fragment>
-      {/* REGISTER-LOGIN POPUP MODAL IF POPUP TRUE (SEE: RegisterContext.tsx) */}
+      {/* REGISTER-LOGIN popup MODAL IF POPUP TRUE (SEE: RegisterContext.tsx) */}
       {popup && <Index />}
 
       {teamModal && <TeamModal />}
