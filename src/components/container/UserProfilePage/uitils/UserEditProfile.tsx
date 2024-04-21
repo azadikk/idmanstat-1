@@ -21,8 +21,6 @@ const UserEditProfile = () => {
   const logOut = () => {
       localStorage.removeItem('authtoken');
       localStorage.removeItem('email');
-      localStorage.removeItem('username');
-      localStorage.removeItem('nationality');
       navigate('/');
       window.location.reload();
   }

@@ -11,8 +11,12 @@ import { useCountryApi } from "../../../context/CountriesContext";
 import { CountryAndCupsType } from "../../../types/PopularLigTypes";
 import axios from "axios";
 import { ToastContainer, Zoom, toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
+import { putApiEndpoints } from "../../../Api";
 
 const Options = ({setLoadBtn, loadBtn}:{setLoadBtn:(value:boolean) => void, loadBtn: boolean}) => {
+  
+    const navigator = useNavigate();
 
     //show countires in selected country options
     const { countries, mainCountries } = useCountryApi();
@@ -77,36 +81,42 @@ const Options = ({setLoadBtn, loadBtn}:{setLoadBtn:(value:boolean) => void, load
     }
     
 
-    const saveImage = async () => {
-      const token = localStorage.getItem('authtoken');
-      const api = 'http://127.0.0.1:8000/account/api/change-avatar/';
+    //dont remove this area ----------------
+    // const saveImage = async () => {
+    //   const token = localStorage.getItem('authtoken');
+    //   const api = 'http://127.0.0.1:8000/account/api/change-avatar/';
 
-      const config = {
-        headers: {
-          "Authorization": `Bearer ${token}`,
-          "Content-Type": "multipart/form-data",
-        },
-      };
+    //   const config = {
+    //     headers: {
+    //       "Authorization": `Bearer ${token}`,
+    //       "Content-Type": "multipart/form-data",
+    //     },
+    //   };
     
-      try {
-        const response = await axios.patch(api, config, selectedImage);
-        if (response.data) {
-          console.log(response.data);
-        } else {
-          console.log(response.status);
-        }
-      } catch (error) {
-        console.log(error, 'profile update endpoint')
-      }
+    //   try {
+    //     const response = await axios.patch(api, config, selectedImage);
+    //     if (response.data) {
+    //       console.log(response.data);
+    //     } else {
+    //       console.log(response.status);
+    //     }
+    //   } catch (error) {
+    //     console.log(error, 'profile update endpoint')
+    //   }
+    // }
+    
+    // React.useEffect(() => {
+    //   saveImage();
+    // }, [selectedImage]);
+    //dont remove this area ----------------
+
+
+    const finishRegister = () => {
+      setLoadBtn(true);
+      setTimeout(() => {
+        navigator('/profile')
+      }, 2200);
     }
-    
-    React.useEffect(() => {
-      saveImage();
-    }, [selectedImage]);
-
-    
-
-
 
 
     return (
@@ -190,9 +200,13 @@ const Options = ({setLoadBtn, loadBtn}:{setLoadBtn:(value:boolean) => void, load
           >+</button>
           </div>
 
-          <button type="submit">
-            Davam et
-          </button>
+          {loadBtn ? (
+            <LoadingAnimation />
+          ) : (
+            <button type="submit" onClick={finishRegister}>
+             Davam et
+            </button>
+          )}
         </div>
       ) : (
         <Formik
@@ -201,7 +215,6 @@ const Options = ({setLoadBtn, loadBtn}:{setLoadBtn:(value:boolean) => void, load
           nationality: '',
         }}
         onSubmit={ async (values) => {
-          const api = 'http://localhost:8000/account/api/change-nationality-username/';
           const token = localStorage.getItem('authtoken');
           const options = {
             validateStatus: (status:any) => {
@@ -218,7 +231,7 @@ const Options = ({setLoadBtn, loadBtn}:{setLoadBtn:(value:boolean) => void, load
             username: values.username,
             nationality: values.nationality,
           }
-          const response = await axios.put(api, data, options);
+          const response = await axios.put(import.meta.env.VITE_APP_CHANGE_USERNAME_NATIONALITY, data, options);
           try {
             if(response.data && response.status === 200) {
               toast.success('İstifadəçi adınız və ölkəniz müvəffəqiyyətlə tətbiq olundu.', {

@@ -7,6 +7,7 @@ import { usePostTipModal } from "../../../../../context/PostTipModalContext";
 import { FaPlus } from "react-icons/fa6";
 import axios from "axios";
 import { useLigApi } from "../../../../../context/LigContext";
+import { api, postApiEndpoints } from "../../../../../Api";
 
 //tip_type: BTS, OU, 1X2, DC
 
@@ -57,8 +58,6 @@ const PostTipModal = ({ selectedlig }: { selectedlig: string | null }) => {
 
   const ShareTips = async () => {
     
-    const api = "http://localhost:8000/flash/api/match-tip/";
-
     const selected_values = Object.keys(selectedOddValue).map((item: any, i: any) => {
       return selectedOddValue[item];
     });
@@ -91,7 +90,7 @@ const PostTipModal = ({ selectedlig }: { selectedlig: string | null }) => {
         },
       };
   
-      postDataArray.push(axios.post(api, data, {
+      postDataArray.push(axios.post(import.meta.env.VITE_APP_POST_MATCHTIPS, data, {
         headers: {
           Authorization: `Bearer ${token}`,
           "Content-Type": "application/json",
@@ -103,7 +102,7 @@ const PostTipModal = ({ selectedlig }: { selectedlig: string | null }) => {
       const responses = await Promise.all(postDataArray);
   
       for (const response of responses) {
-        if (response.status === 200 || response.status === 201) {
+        if (response.status === 200 || response.status === 201 || response.data) {
           console.log("Post successfully", response.data);
         } else {
           console.log("Bir xeta oldu:", response.status);

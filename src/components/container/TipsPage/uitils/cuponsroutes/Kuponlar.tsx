@@ -2,6 +2,7 @@ import React from "react";
 import "../../../../../styles/tipspage/tips.scss";
 import { IoMdMore } from "react-icons/io";
 import LikeAndComment from "../../../LikeAndComment";
+import axios from "axios";
 
 interface GroupedCupons {
   id: number;

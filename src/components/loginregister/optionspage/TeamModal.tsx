@@ -8,6 +8,7 @@ import axios from "axios";
 import { VList } from "virtua";
 import TeamsAndLigsContainer from "./TeamsAndLigsContainer";
 import { useAddTeamContext } from "../../../context/AddTeamContext";
+import { api } from "../../../Api";
 
 export type TeamType = {
   id: number; //the id of the team
@@ -36,10 +37,10 @@ const TeamModal = () => {
   const getCountriesFromTeams = async () => {
     const options = {
       method: "GET",
-      url: `https://api-football-v1.p.rapidapi.com/v3/teams/countries`,
+      url: import.meta.env.VITE_APP_TEAMS_COUNTRIES,
       headers: {
-        "X-RapidAPI-Key": "698e7cd394msha86e95346496330p10602ejsn518dfc936671",
-        "X-RapidAPI-Host": "api-football-v1.p.rapidapi.com",
+        "X-RapidAPI-Key": import.meta.env.VITE_APP_RAPIDAPIKEY,
+        "X-RapidAPI-Host": import.meta.env.VITE_APP_RAPIDAPIHOST,
       },
     };
     const response = await axios.request(options);
@@ -74,8 +75,8 @@ const TeamModal = () => {
       url: `https://api-football-v1.p.rapidapi.com/v3/teams?country=${name.toLowerCase()}`,
       method: "GET",
       headers: {
-        "X-RapidAPI-Key": "698e7cd394msha86e95346496330p10602ejsn518dfc936671",
-        "X-RapidAPI-Host": "api-football-v1.p.rapidapi.com",
+        "X-RapidAPI-Key": import.meta.env.VITE_APP_RAPIDAPIKEY,
+        "X-RapidAPI-Host": import.meta.env.VITE_APP_RAPIDAPIHOST,
       },
     };
     const response = await axios.request(options);

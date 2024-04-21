@@ -8,6 +8,7 @@ import { MdOutlineKeyboardArrowDown, MdOutlineKeyboardArrowUp } from "react-icon
 import { useMutation, useQuery } from "react-query";
 import { SlControlStart } from "react-icons/sl";
 import { useLiveMatchShowContext } from "../../../../../context/AccordingLeagueLiveMatchs";
+import { api } from "../../../../../Api";
 
 
 type ContinentType = {
@@ -101,7 +102,7 @@ const Countries = ({ showedMore, searchedItems }: { showedMore: boolean, searche
   const getCountryOfLeaguesQuery = useQuery('getCountryOfLeagues', async () => {
     const options = {
       method: "GET",
-      url: "http://127.0.0.1:8000/flash/api/get-country-league/",
+      url: import.meta.env.VITE_APP_GET_COUNTRY_AND_LEAGUE
     };
 
     const response = await axios.request(options);
@@ -151,14 +152,14 @@ const Countries = ({ showedMore, searchedItems }: { showedMore: boolean, searche
   const setLiveGames = async (ligID:number | string) => {
     const options = {
       method: 'GET',
-      url: 'https://api-football-v1.p.rapidapi.com/v3/fixtures',
+      url: import.meta.env.VITE_APP_FIXTURES,
       params: {
         live: 'all',
         league: ligID
       },
       headers: {
-        'X-RapidAPI-Key': '698e7cd394msha86e95346496330p10602ejsn518dfc936671',
-        'X-RapidAPI-Host': 'api-football-v1.p.rapidapi.com'
+        'X-RapidAPI-Key': import.meta.env.VITE_APP_RAPIDAPIKEY,
+        'X-RapidAPI-Host': import.meta.env.VITE_APP_RAPIDAPIHOST
       }
     };
 

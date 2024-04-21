@@ -9,6 +9,7 @@ import { Zoom, ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import axios from "axios";
 import { useProfileModal } from "../../../context/UserProfileEditModal";
+import { postApiEndpoints } from "../../../Api";
 
 export type RegisterLoginProps = {
   setLoadBtn: React.Dispatch<SetStateAction<boolean>>;
@@ -47,7 +48,6 @@ const Login = ({loadBtn, setLoadBtn}:RegisterLoginProps) => {
           password: "",
         }}
         onSubmit={async (values) => {
-          const api = 'http://127.0.0.1:8000/account/api/user-login/';
           const data = values;
           const options = {
             validateStatus: (status:any) => {
@@ -58,7 +58,7 @@ const Login = ({loadBtn, setLoadBtn}:RegisterLoginProps) => {
           };
 
           try {
-            const response = await axios.post(api, data, options);
+            const response = await axios.post(import.meta.env.VITE_APP_USER_LOGIN, data, options);
             if(response.data && response.status === 200) {
               toast.success('Daxil oldunuz və yönləndirilirsiniz...', {
                 position: "top-center"

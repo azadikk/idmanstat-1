@@ -139,7 +139,7 @@ const Mainpage = () => {
                 </div>
 
                 <div className='register-date'>
-                  <strong>{localStorage.getItem('reg_date')}</strong>
+                  <strong>{localStorage.getItem('reg_date') ? localStorage.getItem('reg_date') : '20.04.2024'}</strong>
                   <span>Qeydiyyat Tarixi</span>
                 </div>
               </div>

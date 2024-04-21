@@ -4,6 +4,7 @@ import React, { SetStateAction } from "react";
 import "../../styles/global.scss";
 import { IoIosClose } from "react-icons/io";
 import axios from "axios";
+import { api } from "../../Api";
 
 interface EmojiModalInt {
   id: number;
@@ -26,8 +27,7 @@ const EmojiModal = ({ id, emojiModal, setEmojiModal, handleSelectEmoji }: EmojiM
   const [loading, setLoading] = React.useState<boolean>(false);
 
   const GetEmojies = async () => {
-    const api = "https://emoji-api.com/emojis?access_key=aaf150f2a4297709ed23426001ed2eec0943c2b3";
-    const response = await axios.get(api);
+    const response = await axios.get(import.meta.env.VITE_APP_EMOJI_API);
 
     try {
       if (response.data) {

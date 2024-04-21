@@ -9,6 +9,7 @@ import { VList } from "virtua";
 import { useLigApi } from "../../../../../context/LigContext";
 import { useLiveMatchShowContext } from "../../../../../context/AccordingLeagueLiveMatchs";
 import LoadingAnimInGames from "../../../../loadingandlazy/LoadingAnimInGames";
+import { api } from "../../../../../Api";
 
 export interface League {
   country: string,
@@ -63,14 +64,14 @@ const LigsWrapper = ({searchedItems}:{searchedItems:string}) => {
   const setLiveGames = async (ligID:number | string) => {
     const options = {
       method: 'GET',
-      url: 'https://api-football-v1.p.rapidapi.com/v3/fixtures',
+      url: import.meta.env.VITE_APP_FIXTURES,
       params: {
         live: 'all',
         league: ligID
       },
       headers: {
-        'X-RapidAPI-Key': '698e7cd394msha86e95346496330p10602ejsn518dfc936671',
-        'X-RapidAPI-Host': 'api-football-v1.p.rapidapi.com'
+        'X-RapidAPI-Key': import.meta.env.VITE_APP_RAPIDAPIKEY,
+        'X-RapidAPI-Host': import.meta.env.VITE_APP_RAPIDAPIHOST
       }
     };
 

@@ -4,6 +4,7 @@
 import React, { SetStateAction } from "react";
 import { CountryAndCupsType } from "../types/PopularLigTypes";
 import axios from "axios";
+import { api } from "../Api";
 
 
 type CountryContextType = {
@@ -27,8 +28,7 @@ export const CountryContextProvider: React.FC<PropType> = ({ children }) => {
 
   const fetchDataCountries = async () => {
     try {
-      const api = 'http://127.0.0.1:8000/flash/api/popular-and-all-countries/';
-      const response = await axios.get(api);
+      const response = await axios.get(import.meta.env.VITE_APP_POPULAR_AND_ALL_COUNTRIES);
 
       if(response.data){
        setMainCountries(response.data.data.popular_countries);

@@ -5,6 +5,7 @@ import { FixtureData, useMatchStatusContext } from "../../../../../context/Match
 import axios from "axios";
 import { usePostTipModal } from "../../../../../context/PostTipModalContext";
 import { useLigApi } from "../../../../../context/LigContext";
+import { api } from "../../../../../Api";
 
 type accordingType = {
   id: number;
@@ -110,15 +111,15 @@ const SelectedMatch = ({selectedlig}: {selectedlig: string | null}) => {
   const getOverUnderOdds = async (fixtureID: number) => {
     const options = {
       method: "GET",
-      url: "https://api-football-v1.p.rapidapi.com/v3/odds",
+      url: import.meta.env.VITE_APP_ODDS,
       params: {
         fixture: fixtureID,
         bookmaker: "8", //bet 365 id
         bet: "5", //full time
       },
       headers: {
-        "X-RapidAPI-Key": "698e7cd394msha86e95346496330p10602ejsn518dfc936671",
-        "X-RapidAPI-Host": "api-football-v1.p.rapidapi.com",
+        "X-RapidAPI-Key": import.meta.env.VITE_APP_RAPIDAPIKEY,
+        "X-RapidAPI-Host": import.meta.env.VITE_APP_RAPIDAPIHOST,
       },
     };
 
@@ -140,15 +141,15 @@ const SelectedMatch = ({selectedlig}: {selectedlig: string | null}) => {
   const getOverUnderOddsFirstHalf = async (fixtureID: number) => {
     const options = {
       method: "GET",
-      url: "https://api-football-v1.p.rapidapi.com/v3/odds",
+      url: import.meta.env.VITE_APP_ODDS,
       params: {
         fixture: fixtureID,
         bookmaker: "8", //bet 365 id
         bet: "6", //for first time
       },
       headers: {
-        "X-RapidAPI-Key": "698e7cd394msha86e95346496330p10602ejsn518dfc936671",
-        "X-RapidAPI-Host": "api-football-v1.p.rapidapi.com",
+        "X-RapidAPI-Key": import.meta.env.VITE_APP_RAPIDAPIKEY,
+        "X-RapidAPI-Host": import.meta.env.VITE_APP_RAPIDAPIHOST,
       },
     };
 
@@ -169,15 +170,15 @@ const SelectedMatch = ({selectedlig}: {selectedlig: string | null}) => {
   const getOverUnderOddsSecondHalf = async (fixtureID: number) => {
     const options = {
       method: "GET",
-      url: "https://api-football-v1.p.rapidapi.com/v3/odds",
+      url: import.meta.env.VITE_APP_ODDS,
       params: {
         fixture: fixtureID,
         bookmaker: "8", //bet 365 id
         bet: "26", //for second time
       },
       headers: {
-        "X-RapidAPI-Key": "698e7cd394msha86e95346496330p10602ejsn518dfc936671",
-        "X-RapidAPI-Host": "api-football-v1.p.rapidapi.com",
+        "X-RapidAPI-Key": import.meta.env.VITE_APP_RAPIDAPIKEY,
+        "X-RapidAPI-Host": import.meta.env.VITE_APP_RAPIDAPIHOST,
       },
     };
 
@@ -199,15 +200,15 @@ const SelectedMatch = ({selectedlig}: {selectedlig: string | null}) => {
   const getHomeAwayDrawOddValues = async (fixtureID: number) => {
     const options = {
       method: "GET",
-      url: "https://api-football-v1.p.rapidapi.com/v3/odds",
+      url: import.meta.env.VITE_APP_ODDS,
       params: {
         fixture: fixtureID,
         bookmaker: "8", //bet 365 id
         bet: "1", //full time home-away-draw
       },
       headers: {
-        "X-RapidAPI-Key": "698e7cd394msha86e95346496330p10602ejsn518dfc936671",
-        "X-RapidAPI-Host": "api-football-v1.p.rapidapi.com",
+        "X-RapidAPI-Key": import.meta.env.VITE_APP_RAPIDAPIKEY,
+        "X-RapidAPI-Host": import.meta.env.VITE_APP_RAPIDAPIHOST,
       },
     };
 
@@ -229,15 +230,15 @@ const SelectedMatch = ({selectedlig}: {selectedlig: string | null}) => {
   const BtsFullTime = async (fixtureID: number | null) => {
     const options = {
       method: "GET",
-      url: "https://api-football-v1.p.rapidapi.com/v3/odds",
+      url: import.meta.env.VITE_APP_ODDS,
       params: {
         fixture: fixtureID,
         bookmaker: "8",
         bet: "8",
       },
       headers: {
-        "X-RapidAPI-Key": "698e7cd394msha86e95346496330p10602ejsn518dfc936671",
-        "X-RapidAPI-Host": "api-football-v1.p.rapidapi.com",
+        "X-RapidAPI-Key": import.meta.env.VITE_APP_RAPIDAPIKEY,
+        "X-RapidAPI-Host": import.meta.env.VITE_APP_RAPIDAPIHOST,
       },
     };
 
@@ -258,15 +259,15 @@ const SelectedMatch = ({selectedlig}: {selectedlig: string | null}) => {
   const BtsFirstHalf = async (fixtureID: number | null) => {
     const options = {
       method: "GET",
-      url: "https://api-football-v1.p.rapidapi.com/v3/odds",
+      url: import.meta.env.VITE_APP_ODDS,
       params: {
         fixture: fixtureID,
         bookmaker: "8",
         bet: "34",
       },
       headers: {
-        "X-RapidAPI-Key": "698e7cd394msha86e95346496330p10602ejsn518dfc936671",
-        "X-RapidAPI-Host": "api-football-v1.p.rapidapi.com",
+        "X-RapidAPI-Key": import.meta.env.VITE_APP_RAPIDAPIKEY,
+        "X-RapidAPI-Host": import.meta.env.VITE_APP_RAPIDAPIHOST,
       },
     };
 
@@ -287,15 +288,15 @@ const SelectedMatch = ({selectedlig}: {selectedlig: string | null}) => {
   const BtsSecondHalf = async (fixtureID: number | null) => {
     const options = {
       method: "GET",
-      url: "https://api-football-v1.p.rapidapi.com/v3/odds",
+      url: import.meta.env.VITE_APP_ODDS,
       params: {
         fixture: fixtureID,
         bookmaker: "8",
         bet: "35",
       },
       headers: {
-        "X-RapidAPI-Key": "698e7cd394msha86e95346496330p10602ejsn518dfc936671",
-        "X-RapidAPI-Host": "api-football-v1.p.rapidapi.com",
+        "X-RapidAPI-Key": import.meta.env.VITE_APP_RAPIDAPIKEY,
+        "X-RapidAPI-Host": import.meta.env.VITE_APP_RAPIDAPIHOST,
       },
     };
 
@@ -319,15 +320,15 @@ const SelectedMatch = ({selectedlig}: {selectedlig: string | null}) => {
   const DcFullTime = async (fixtureID: number | null) => {
     const options = {
       method: "GET",
-      url: "https://api-football-v1.p.rapidapi.com/v3/odds",
+      url: import.meta.env.VITE_APP_ODDS,
       params: {
         fixture: fixtureID,
         bookmaker: "8",
         bet: "12",
       },
       headers: {
-        "X-RapidAPI-Key": "698e7cd394msha86e95346496330p10602ejsn518dfc936671",
-        "X-RapidAPI-Host": "api-football-v1.p.rapidapi.com",
+        "X-RapidAPI-Key": import.meta.env.VITE_APP_RAPIDAPIKEY,
+        "X-RapidAPI-Host": import.meta.env.VITE_APP_RAPIDAPIHOST,
       },
     };
 
@@ -348,15 +349,15 @@ const SelectedMatch = ({selectedlig}: {selectedlig: string | null}) => {
   const DcFirstHalf = async (fixtureID: number | null) => {
     const options = {
       method: "GET",
-      url: "https://api-football-v1.p.rapidapi.com/v3/odds",
+      url: import.meta.env.VITE_APP_ODDS,
       params: {
         fixture: fixtureID,
         bookmaker: "8",
         bet: "20",
       },
       headers: {
-        "X-RapidAPI-Key": "698e7cd394msha86e95346496330p10602ejsn518dfc936671",
-        "X-RapidAPI-Host": "api-football-v1.p.rapidapi.com",
+        "X-RapidAPI-Key": import.meta.env.VITE_APP_RAPIDAPIKEY,
+        "X-RapidAPI-Host": import.meta.env.VITE_APP_RAPIDAPIHOST,
       },
     };
 
@@ -377,15 +378,15 @@ const SelectedMatch = ({selectedlig}: {selectedlig: string | null}) => {
   const DcSecondHalf = async (fixtureID: number | null) => {
     const options = {
       method: "GET",
-      url: "https://api-football-v1.p.rapidapi.com/v3/odds",
+      url: import.meta.env.VITE_APP_ODDS,
       params: {
         fixture: fixtureID,
         bookmaker: "8",
         bet: "33",
       },
       headers: {
-        "X-RapidAPI-Key": "698e7cd394msha86e95346496330p10602ejsn518dfc936671",
-        "X-RapidAPI-Host": "api-football-v1.p.rapidapi.com",
+        "X-RapidAPI-Key": import.meta.env.VITE_APP_RAPIDAPIKEY,
+        "X-RapidAPI-Host": import.meta.env.VITE_APP_RAPIDAPIHOST,
       },
     };
 

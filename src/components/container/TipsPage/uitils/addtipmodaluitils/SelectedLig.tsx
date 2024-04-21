@@ -2,6 +2,7 @@ import React, { SetStateAction } from "react";
 import "../../../../../styles/tipspage/addtipmodal.scss";
 import axios from "axios";
 import { useMatchStatusContext } from "../../../../../context/MatchStatusContext";
+import { api } from "../../../../../Api";
 
 type Props = {
   selectedlig: string | null;
@@ -49,7 +50,7 @@ const SelectedLig = ({ selectedlig, leagueType, leagueImage, setSelectedMatch, l
     const options2023 = {
       //the season of 2023
       method: "GET",
-      url: "https://api-football-v1.p.rapidapi.com/v3/fixtures",
+      url: import.meta.env.VITE_APP_FIXTURES,
       params: {
         league: leagueID,
         season: "2023",
@@ -57,34 +58,17 @@ const SelectedLig = ({ selectedlig, leagueType, leagueImage, setSelectedMatch, l
         to: toValue,
       },
       headers: {
-        "X-RapidAPI-Key": "698e7cd394msha86e95346496330p10602ejsn518dfc936671",
-        "X-RapidAPI-Host": "api-football-v1.p.rapidapi.com",
+        "X-RapidAPI-Key": import.meta.env.VITE_APP_RAPIDAPIKEY,
+        "X-RapidAPI-Host": import.meta.env.VITE_APP_RAPIDAPIHOST,
       },
     };
 
-    // const options2024 = {
-    //   //the season of 2024
-    //   method: "GET",
-    //   url: "https://api-football-v1.p.rapidapi.com/v3/fixtures",
-    //   params: {
-    //     league: leagueID,
-    //     season: "2024",
-    //   },
-    //   headers: {
-    //     "X-RapidAPI-Key": "698e7cd394msha86e95346496330p10602ejsn518dfc936671",
-    //     "X-RapidAPI-Host": "api-football-v1.p.rapidapi.com",
-    //   },
-    // };
     try {
-      // const [response2023] = await Promise.all([axios.request(options2023), axios.request(options2024)]);
 
       const response2023 = await axios.request(options2023);
       if (response2023.data) {
         const fixtures2023 = response2023.data.response.map((fixture: any) => fixture.fixture);
         const teams2023 = response2023.data.response.map((team: any) => team.teams);
-
-        // const fixtures2024 = response2024.data.response.map((fixture: any) => fixture.fixture);
-        // const teams2024 = response2024.data.response.map((team: any) => team.teams);
 
         const allFixtures = [...fixtures2023];
         const allTeams = [...teams2023];

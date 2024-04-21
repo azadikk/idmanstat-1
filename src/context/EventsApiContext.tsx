@@ -1,6 +1,7 @@
 import React, { SetStateAction } from 'react'
 import { EventType } from '../components/container/HomePage/uitils/ContentUitils/ContentRoutes/fixturemodalroutes/Events'
 import axios from 'axios';
+import { api } from '../Api';
 
 type EventContextType = {
      events: EventType[] | null,
@@ -22,11 +23,11 @@ export const EventsContextProvider:React.FC<childrenType> = ({ children }) => {
      const fetchDataForEvents = async (id: number | undefined) => {
           const options = {
                     method: 'GET',
-                    url: 'https://api-football-v1.p.rapidapi.com/v3/fixtures/events',
+                    url: import.meta.env.VITE_APP_FIXTURES_EVENTS,
                     params: {fixture: id},
                     headers: {
-                      'X-RapidAPI-Key': '698e7cd394msha86e95346496330p10602ejsn518dfc936671',
-                      'X-RapidAPI-Host': 'api-football-v1.p.rapidapi.com'
+                      'X-RapidAPI-Key': import.meta.env.VITE_APP_RAPIDAPIKEY,
+                      'X-RapidAPI-Host': import.meta.env.VITE_APP_RAPIDAPIHOST
                     }
           }
 

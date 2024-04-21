@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { SetStateAction } from "react";
 import { GameType } from "./Games";
+import { api } from "../../../../../../Api";
 
 type GamesApiType = {
   liveGamesData: GameType[]; //all games are in this state
@@ -34,11 +35,11 @@ export const GamesApiContextProvider: React.FC<childrenGamesApi> = ({ children }
   const fetchAccordingToDataGames = async (date: string) => {
     const formattedDate = dateFormatForApi(date);
     const options = {
-      url: "https://api-football-v1.p.rapidapi.com/v3/fixtures",
+      url: import.meta.env.VITE_APP_FIXTURES,
       params: { date: formattedDate },
       headers: {
-        "X-RapidAPI-Key": "698e7cd394msha86e95346496330p10602ejsn518dfc936671",
-        "X-RapidAPI-Host": "api-football-v1.p.rapidapi.com",
+        "X-RapidAPI-Key": import.meta.env.VITE_APP_RAPIDAPIKEY,
+        "X-RapidAPI-Host": import.meta.env.VITE_APP_RAPIDAPIHOST,
       },
     };
 
@@ -100,11 +101,11 @@ export const GamesApiContextProvider: React.FC<childrenGamesApi> = ({ children }
   //FETCH ALL LIVE GAMES
   const fetchLiveGames = async () => {
     const options = {
-      url: "https://api-football-v1.p.rapidapi.com/v3/fixtures",
+      url: import.meta.env.VITE_APP_FIXTURES,
       params: { live: "all" },
       headers: {
-        "X-RapidAPI-Key": "698e7cd394msha86e95346496330p10602ejsn518dfc936671",
-        "X-RapidAPI-Host": "api-football-v1.p.rapidapi.com",
+        "X-RapidAPI-Key": import.meta.env.VITE_APP_RAPIDAPIKEY,
+        "X-RapidAPI-Host": import.meta.env.VITE_APP_RAPIDAPIHOST,
       },
     };
 

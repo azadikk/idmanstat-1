@@ -58,38 +58,6 @@ const TekliOyunlar = () => {
    
   ];
 
-  // //get tips
-  // const { setTips, tips } = useTipData();
-  // const getTipData = async () => {
-  //   const token = localStorage.getItem('authtoken');
-  //   const api = 'http://localhost:8000/flash/api/match-tip/'
-  //   const response = await axios.get(api, {
-  //     headers: {
-  //       "Authorization": `Bearer ${token}`,
-  //       "Content-Type": 'application/json',
-  //     }
-  //   });
-
-  //   try {
-  //     if(response.data) {
-  //       console.log(response.data, 'dataaaaa');
-  //       setTips(response.data.data);
-  //     } else {
-  //       console.log(response.status, 'satusssss')
-  //     }
-  //   } catch (error) {
-  //     console.log(error, 'tip data err');
-  //   }
-  // }
-
-  // React.useEffect(() => {
-  //   getTipData();
-
-  //   console.log('salma')
-  // }, [])
-
-
-
   return (
     <div className="container-t-o">
       {GuessItem.map((guess) => (

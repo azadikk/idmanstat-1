@@ -3,6 +3,7 @@
 
 import axios from 'axios';
 import React, { SetStateAction } from 'react'
+import { api } from '../Api';
 
 
 //type define fixture data for all values
@@ -70,13 +71,13 @@ export const MatchStatusContextProvider:React.FC<MatchStatusContextChildrenProps
      const fetchMatchOdds = async () => {
           const options = {
             method: 'GET',
-            url: 'https://api-football-v1.p.rapidapi.com/v3/odds',
+            url: import.meta.env.VITE_APP_ODDS,
             params: {
                fixture: fixtureID
             }, //fixture id at a request parameter value
             headers: {
-              'X-RapidAPI-Key': '698e7cd394msha86e95346496330p10602ejsn518dfc936671',
-              'X-RapidAPI-Host': 'api-football-v1.p.rapidapi.com'
+              'X-RapidAPI-Key': import.meta.env.VITE_APP_RAPIDAPIKEY,
+              'X-RapidAPI-Host': import.meta.env.VITE_APP_RAPIDAPIHOST
             }
           };
       

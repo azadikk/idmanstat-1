@@ -10,6 +10,7 @@ import { useRegisterContext } from "../../../context/RegisterContext";
 import axios from "axios";
 import { Zoom, ToastContainer, toast } from "react-toastify"; 
 import 'react-toastify/dist/ReactToastify.css';
+import { postApiEndpoints } from "../../../Api";
 
 
 const Register = ({loadBtn, setLoadBtn}:RegisterLoginProps) => {
@@ -62,7 +63,6 @@ const Register = ({loadBtn, setLoadBtn}:RegisterLoginProps) => {
           newsletter: undefined,
         }}
         onSubmit={async (values) => {
-          const api = 'http://127.0.0.1:8000/account/api/user-register/';
           const data = values;
           const options = {
             validateStatus: (status:any) => {
@@ -72,7 +72,7 @@ const Register = ({loadBtn, setLoadBtn}:RegisterLoginProps) => {
             }
           }
 
-          const request = await axios.post(api, data, options);
+          const request = await axios.post(import.meta.env.VITE_APP_USER_REGISTER, data, options);
 
           try {
           

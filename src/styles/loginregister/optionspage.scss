@@ -387,6 +387,7 @@
       }
     }
 
+    @include loadingAnim();
     button[type="submit"] {
       width: 50%;
       height: 38px;
